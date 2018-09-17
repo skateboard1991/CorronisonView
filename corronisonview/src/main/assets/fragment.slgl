@@ -1,0 +1,15 @@
+#version 300 es
+precision mediump float;
+in vec2 texCoord;
+out vec4 fragColor;
+uniform sampler2D sampler;
+uniform float percent;
+void main()
+{
+   vec4 samplerColor=texture(sampler,texCoord);
+   float size=samplerColor.r+samplerColor.g+samplerColor.b+samplerColor.a;
+   float curSize=4.0*percent;
+   if(size<=curSize)
+      discard;
+   fragColor=samplerColor;
+}
